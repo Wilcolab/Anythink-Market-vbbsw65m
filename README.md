@@ -35,7 +35,9 @@ To run the Node.js server using Docker, follow these steps:
 
   This command will build the Docker image for the Node.js server and start the containers defined in the `docker-compose.yml` file.
 
-- The Node.js server should now be running. You can access it at port `8000`.
+- The Node.js server should now be running. You can access it at port `8001`.
+
+- The Python server (FastAPI) is also available and runs on port `8000`.
 
 ## API Routes
 
