@@ -15,7 +15,7 @@ def get_tasks():
 @app.post("/tasks")
 def add_task(task: Task):
     tasks.append(task.text)
-    return {"message": "Task added successfully"}
+    return {"tasks": tasks}
 
 @app.get("/tasks")
 def get_tasks():
