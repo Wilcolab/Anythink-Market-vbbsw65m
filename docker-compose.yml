@@ -17,4 +17,4 @@ services:
     volumes:
       - ./js-express-server/src:/app/src
       - ./js-express-server/package.json:/app/package.json
-      - ./js-express-server/yarn.lock:/app/yarn.lock
+      # - ./js-express-server/yarn.lock:/app/yarn.lock
