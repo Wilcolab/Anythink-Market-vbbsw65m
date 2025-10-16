@@ -1,0 +1,52 @@
+// toSnakeCase.js
+// Convert text to snake_case (handles spaces, punctuation, kebab-case, camelCase, Unicode accents).
+
+function toSnakeCase(input) {
+    if (input == null) return '';
+    const str = String(input);
+
+    // Normalize and strip diacritics
+    const normalized = str.normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
+
+    // Put boundary between lower-number and upper (fooBar -> foo_Bar)
+    const withBoundaries = normalized.replace(/([a-z0-9])([A-Z])/g, '$1_$2');
+
+    // Replace any non-alphanumeric run with underscore
+    const replaced = withBoundaries.replace(/[^A-Za-z0-9]+/g, '_');
+
+    // Collapse multiple underscores, trim edges, lowercase
+    return replaced.replace(/_+/g, '_').replace(/^_|_$/g, '').toLowerCase();
+}
+
+module.exports = toSnakeCase;
+
+// If executed directly, run simple examples
+if (require.main === module) {
+    const examples = [
+        'HelloWorld',
+        'helloWorld',
+        '  Foo-Bar baz ',
+        'snake_case',
+        'ThisIsATest123',
+        'Résumé — Café',
+        'URLParser',
+        '123numberStart',
+        'multiple   spaces'
+    ];
+    for (const ex of examples) {
+        console.log(`"${ex}" -> "${toSnakeCase(ex)}"`);
+    }
+}
+
+
+function addNumbers(a, b) {
+    if (a == null || b == null) {
+        throw new Error('Both arguments must be provided and not null or undefined.');
+    }
+    if (typeof a !== 'number' || typeof b !== 'number' || Number.isNaN(a) || Number.isNaN(b)) {
+        throw new Error('Both arguments must be valid numbers.');
+    }
+    return a + b;
+}
+
+module.exports.addNumbers = addNumbers;
